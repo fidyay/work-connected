@@ -1,33 +1,26 @@
 import { PayloadAction, configureStore, createSlice } from "@reduxjs/toolkit";
 
-interface InitialState {
-  [key: string]: any;
-}
+type InitialState = string[];
 
-const initialState: InitialState = {};
+const initialState: InitialState = ["admin", "user"];
 // temporary code
-const chatSlice = createSlice({
-  name: "counter",
+const rolesSlice = createSlice({
+  name: "roles",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1;
-    },
-    decrement: (state) => {
-      state.value -= 1;
-    },
-    // Use the PayloadAction type to declare the contents of `action.payload`
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload;
+    addRole: (state, action: PayloadAction<string>) => {
+      state.push(action.payload);
     },
   },
 });
 
 const store = configureStore({
   reducer: {
-    chat: chatSlice.reducer,
+    roles: rolesSlice.reducer,
   },
 });
+
+export type RootStoreType = ReturnType<typeof store.getState>;
 
 export default store;

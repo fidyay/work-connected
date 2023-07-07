@@ -1,12 +1,12 @@
 import FormField from "@/components/FormField";
 import Button from "@/components/Button";
-import Role from "@/components/Role";
+import SelectionRoles from "@/components/SelectionRoles";
 
-function CreateCompanyPage() {
+function CreateAccountPage() {
   return (
     <form>
-      <FormField label="Company name" placeholder="Microsoft corporations" />
-      <Role>admin</Role>
+      <FormField label="Person's names" placeholder="Name Surname" />
+      <SelectionRoles title="Roles" />
       <div>
         <Button href="/authorization/create-company">Back</Button>
         <Button href="/">Next</Button>
@@ -15,4 +15,4 @@ function CreateCompanyPage() {
   );
 }
 
-export default CreateCompanyPage;
+export default CreateAccountPage;

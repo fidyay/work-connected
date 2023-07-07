@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Cross from "./Cross";
+import Cross from "./svg/Cross";
 
 interface RoleProps {
   children: string;
@@ -10,7 +10,7 @@ interface RoleProps {
 function Role({ children, onClick }: RoleProps) {
   return (
     <span onClick={onClick}>
-      @{children}
+      {"@" + children}
       {onClick && <Cross />}
     </span>
   );
