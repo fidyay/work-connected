@@ -1,0 +1,21 @@
+@import "./variables.scss";
+
+.label {
+  font-size: 16px;
+}
+
+.input {
+  border: none;
+  background-color: $formfieldcolor;
+  color: $textcolor;
+  margin-left: 14px;
+  transition: outline-width 0.1s;
+  border-radius: 5px;
+  outline: solid $bordercolor 0;
+  &:focus {
+    outline: solid $bordercolor 3px;
+  }
+  &::placeholder {
+    color: rgba($textcolor, 0.7);
+  }
+}

@@ -1,0 +1,18 @@
+@import "./variables.scss";
+
+.button {
+  background-color: $buttoncolor;
+  font-size: 16px;
+  border-radius: 5px;
+  display: block;
+  color: $textcolor;
+  text-decoration: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: fit-content;
+
+  &:hover {
+    background-color: rgba($buttoncolor, 0.7);
+  }
+}

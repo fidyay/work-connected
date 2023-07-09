@@ -1,0 +1,28 @@
+@import "./variables.scss";
+
+.form_wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: $maincolor;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: $textcolor;
+}
+
+.form_title {
+  font-size: 24px;
+}
+
+.form_button_wrapper {
+  margin-top: 16px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}

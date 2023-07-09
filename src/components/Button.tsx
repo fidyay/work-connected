@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import styles from "@/styles/button.module.scss";
 
 interface ButtonProps {
   children: string;
@@ -10,9 +11,13 @@ interface ButtonProps {
 
 function Button({ children, onClick, href }: ButtonProps) {
   return href ? (
-    <Link href={href}>{children}</Link>
+    <Link className={styles.button} href={href}>
+      {children}
+    </Link>
   ) : (
-    <button onClick={onClick}>{children}</button>
+    <button className={styles.button} onClick={onClick}>
+      {children}
+    </button>
   );
 }
 
