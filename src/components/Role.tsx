@@ -1,17 +1,22 @@
 "use client";
 import React from "react";
 import Cross from "./svg/Cross";
+import styles from "@/styles/role.module.scss";
 
 interface RoleProps {
   children: string;
   onClick?: React.MouseEventHandler<HTMLSpanElement>;
+  selected?: boolean;
 }
 
-function Role({ children, onClick }: RoleProps) {
+function Role({ children, onClick, selected }: RoleProps) {
   return (
-    <span onClick={onClick}>
+    <span
+      className={styles.span + (selected ? ` ${styles.selected}` : "")}
+      onClick={onClick}
+    >
       {"@" + children}
-      {onClick && <Cross />}
+      {!!selected && <Cross className={styles.cross} />}
     </span>
   );
 }

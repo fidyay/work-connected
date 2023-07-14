@@ -1,0 +1,25 @@
+@import "./variables.scss";
+
+.span {
+  background-color: rgba($color: $buttoncolor, $alpha: 0.5);
+  color: $textcolor;
+  border-radius: 5px;
+  margin-left: 5px;
+  padding: 1px 1px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  &:first-of-type {
+    margin-left: 0;
+  }
+  &.selected {
+    background-color: $buttoncolor;
+  }
+}
+
+.selected {
+}
+
+.cross {
+  margin-left: 5px;
+  stroke: $textcolor;
+}

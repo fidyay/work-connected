@@ -1,0 +1,16 @@
+@import "./variables.scss";
+
+.selection {
+  display: none;
+}
+
+.title {
+  text-align: center;
+  display: block;
+  font-size: 18px;
+}
+
+.selection_wrapper {
+  margin-top: 10px;
+  align-self: stretch;
+}
