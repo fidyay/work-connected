@@ -7,6 +7,7 @@
   margin-left: 5px;
   padding: 1px 1px;
   transition: background-color 0.2s;
+  vertical-align: middle;
   cursor: pointer;
   &:first-of-type {
     margin-left: 0;
@@ -19,7 +20,31 @@
 .selected {
 }
 
-.cross {
+.cross_default {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+}
+
+.cross_enter {
+  transform: scale(0);
+  margin-left: 0px;
+  margin-right: -10px;
+}
+.cross_enter_active {
+  transform: scale(1);
+  margin-right: 0px;
   margin-left: 5px;
-  stroke: $textcolor;
+  transition: transform 100ms, margin 200ms;
+}
+.cross_exit {
+  transform: scale(1);
+  margin-left: 5px;
+  margin-right: 0px;
+}
+.cross_exit_active {
+  transform: scale(0);
+  margin-right: -10px;
+  margin-left: 0px;
+  transition: transform 100ms, margin 200ms;
 }
