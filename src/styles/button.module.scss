@@ -11,6 +11,7 @@
   cursor: pointer;
   transition: background-color 0.2s;
   width: fit-content;
+  border: none;
 
   &:hover {
     background-color: rgba($buttoncolor, 0.7);

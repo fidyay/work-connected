@@ -3,6 +3,7 @@ import { Roboto } from "next/font/google";
 import { Metadata } from "next";
 import ReduxProvider from "@/components/ReduxProvider";
 import "@/styles/global.scss";
+import "@/db/mongodb";
 
 export const metadata: Metadata = {
   title: "Work Connected",

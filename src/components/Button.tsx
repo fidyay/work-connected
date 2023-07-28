@@ -3,22 +3,46 @@ import React from "react";
 import Link from "next/link";
 import styles from "@/styles/button.module.scss";
 
+interface LinkProps {
+  children: string;
+  href: string;
+}
+
 interface ButtonProps {
   children: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  href?: string;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }
 
-function Button({ children, onClick, href }: ButtonProps) {
-  return href ? (
-    <Link className={styles.button} href={href}>
-      {children}
-    </Link>
-  ) : (
-    <button className={styles.button} onClick={onClick}>
-      {children}
-    </button>
-  );
+type ElProps = LinkProps | ButtonProps;
+
+function Button(props: ElProps) {
+  if ((props as LinkProps).href) {
+    const { children, href } = props as LinkProps;
+    return (
+      <Link className={styles.button} href={href}>
+        {children}
+      </Link>
+    );
+  } else {
+    const {
+      children,
+      type = "button",
+      disabled = false,
+      onClick,
+    } = props as ButtonProps;
+    return (
+      <button
+        type={type}
+        disabled={disabled}
+        className={styles.button}
+        onClick={onClick}
+      >
+        {children}
+      </button>
+    );
+  }
 }
 
 export default Button;
