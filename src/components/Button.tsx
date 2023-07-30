@@ -6,22 +6,27 @@ import styles from "@/styles/button.module.scss";
 interface LinkProps {
   children: string;
   href: string;
+  className?: string;
 }
 
 interface ButtonProps {
-  children: string;
+  children: string | React.ReactNode;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
+  className?: string;
 }
 
 type ElProps = LinkProps | ButtonProps;
 
 function Button(props: ElProps) {
   if ((props as LinkProps).href) {
-    const { children, href } = props as LinkProps;
+    const { children, href, className = "" } = props as LinkProps;
     return (
-      <Link className={styles.button} href={href}>
+      <Link
+        className={styles.button + `${className.length ? " " : ""}${className}`}
+        href={href}
+      >
         {children}
       </Link>
     );
@@ -31,12 +36,13 @@ function Button(props: ElProps) {
       type = "button",
       disabled = false,
       onClick,
+      className = "",
     } = props as ButtonProps;
     return (
       <button
+        className={styles.button + `${className.length ? " " : ""}${className}`}
         type={type}
         disabled={disabled}
-        className={styles.button}
         onClick={onClick}
       >
         {children}

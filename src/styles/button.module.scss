@@ -16,4 +16,8 @@
   &:hover {
     background-color: rgba($buttoncolor, 0.7);
   }
+
+  &:disabled {
+    background-color: rgba($buttoncolor, 0.5);
+  }
 }
