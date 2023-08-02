@@ -14,7 +14,7 @@
   background-color: $formfieldcolor;
   color: $textcolor;
   margin-left: 14px;
-  transition: outline-width 0.1s;
+  transition: outline 0.1s;
   border-radius: 5px;
   outline: solid $bordercolor 0;
   &:focus {
@@ -22,5 +22,9 @@
   }
   &::placeholder {
     color: rgba($textcolor, 0.7);
+  }
+  &:focus:invalid {
+    color: $secondarycolor;
+    outline: solid $secondarycolor 3px;
   }
 }

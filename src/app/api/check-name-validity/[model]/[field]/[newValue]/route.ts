@@ -1,4 +1,4 @@
-import { type BodyType as NameQueryParams } from "@/hooks/useCheckFieldUniqueness";
+import { type NameQueryParams } from "@/hooks/useCheckFieldUniqueness";
 import { NextResponse } from "next/server";
 import userModel from "@/db/models/user";
 import organizationModel from "@/db/models/organization";

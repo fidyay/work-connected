@@ -1,4 +1,4 @@
-import FormField from "@/components/FormField";
+import FormField from "@/components/FormField/server_component";
 import Button from "@/components/Button";
 import SelectionRoles from "@/components/SelectionRoles";
 import styles from "@/styles/authorization_form.module.scss";
