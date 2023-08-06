@@ -1,12 +1,13 @@
 import React, { forwardRef } from "react";
 import styles from "@/styles/svg.module.scss";
-interface CrossProps {
+
+interface CheckmarkProps {
   style?: React.CSSProperties;
   className?: string;
 }
 
-const Cross = forwardRef(function Cross(
-  { style, className = "" }: CrossProps,
+const Checkmark = forwardRef(function Checkmark(
+  { style, className = "" }: CheckmarkProps,
   ref?: React.ForwardedRef<HTMLSpanElement>
 ) {
   return (
@@ -15,18 +16,14 @@ const Cross = forwardRef(function Cross(
         className={styles.svg}
         width="10"
         height="10"
-        viewBox="0 0 10 10"
+        viewBox="0 0 24 17"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path
-          d="M1.464 8.53503L8.536 1.46503M1.464 1.46503L8.536 8.53503"
-          stroke-width="1.5"
-          stroke-linecap="round"
-        />
+        <path d="M9 17L0 8L1.414 6.586L9 14.171L22.586 0.585999L24 2L9 17Z" />
       </svg>
     </span>
   );
 });
 
-export default Cross;
+export default Checkmark;

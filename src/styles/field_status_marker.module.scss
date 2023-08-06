@@ -1,0 +1,93 @@
+@import "./variables";
+
+.wrapper {
+  padding: 2px 5px;
+  background-color: rgba(black, 0.5);
+  position: absolute;
+  left: calc(100% + 5px);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  display: flex;
+  border-radius: 5px;
+  border: 1px solid $textcolor;
+  align-items: center;
+
+  &_success {
+    color: $successcolor;
+    border-color: $successcolor;
+    padding: 5px 5px;
+  }
+  &_reject {
+    color: $rejectcolor;
+    border-color: $rejectcolor;
+  }
+  &_pending {
+    padding: 5px 5px;
+  }
+}
+.text {
+  width: auto;
+}
+
+@mixin marker-loader {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border-radius: 50%;
+  border-width: 1px;
+  border-style: solid;
+}
+
+@mixin marker {
+  @include marker-loader;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    width: 80%;
+    height: 80%;
+  }
+}
+
+.marker {
+  &_info {
+    @include marker;
+    border-color: $textcolor;
+    svg {
+      stroke: $textcolor;
+      fill: $textcolor;
+    }
+  }
+  &_checkmark {
+    @include marker;
+    border-color: $successcolor;
+    svg {
+      stroke: $successcolor;
+      fill: $successcolor;
+    }
+  }
+  &_reject {
+    @include marker;
+    border-color: $rejectcolor;
+    svg {
+      stroke: $rejectcolor;
+      fill: $rejectcolor;
+      width: 70%;
+      height: 70%;
+    }
+  }
+  &_loader_wrapper {
+    @include marker-loader;
+    border-color: $textcolor;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &_loader {
+    width: 100%;
+    height: 100%;
+  }
+}
