@@ -2,16 +2,23 @@
 
 .wrapper {
   padding: 2px 5px;
-  background-color: rgba(black, 0.5);
+  background-color: #111824;
   position: absolute;
-  left: calc(100% + 5px);
-  top: 50%;
-  transform: translateY(-50%);
   font-size: 12px;
   display: flex;
   border-radius: 5px;
   border: 1px solid $textcolor;
   align-items: center;
+  @media screen and (min-width: 600px) {
+    left: calc(100% + 5px);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  @media screen and (max-width: 599px) {
+    bottom: calc(100% + 7px);
+    right: 96.8px;
+    transform: translateX(50%);
+  }
 
   &_success {
     color: $successcolor;
