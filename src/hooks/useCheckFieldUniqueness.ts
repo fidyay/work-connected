@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 
 export type checkingState = "pending" | "checked" | "rejected" | "initial";
 
@@ -11,6 +11,12 @@ interface FieldRequestStatus {
 
 interface ResponseResult {
   result: boolean;
+}
+
+interface FError {
+  code: number;
+  name: string;
+  message: string;
 }
 
 export type ModelNames = "User" | "Organization" | "Role" | "Chat";
@@ -27,31 +33,38 @@ function useCheckFieldUniqueness(
   field: string
 ): FieldRequestStatus {
   const [status, setStatus] = useState<checkingState>("initial");
-  const controller = useRef<AbortController>(new AbortController());
   useEffect(() => {
-    controller.current.abort();
+    const controller = new AbortController();
     if (newValue === "") {
       setStatus("initial");
     } else {
       setStatus("pending");
       fetch(`/api/check-name-validity/${model}/${field}/${newValue}`, {
-        signal: controller.current.signal,
+        signal: controller.signal,
       })
         .then((res) => res.json())
         .then((responseResult: ResponseResult) => {
-          if (responseResult.result) {
+          const { result } = responseResult;
+          if (result) {
             setStatus("checked");
           } else {
             setStatus("rejected");
           }
         })
-        .catch(console.error);
+        .catch((e: FError) => {
+          if (
+            e.name !== "AbortError" ||
+            e.code !== 20 ||
+            e.message !== "The user aborted a request."
+          ) {
+            console.error(e);
+          }
+        });
     }
     return () => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      controller.current.abort();
+      controller.abort();
     };
-  }, [controller, field, model, newValue, setStatus, status]);
+  }, [field, model, newValue]);
   return {
     pending: status === "pending",
     checked: status === "checked",

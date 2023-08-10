@@ -2,7 +2,7 @@
 import styles from "@/styles/form_field.module.scss";
 import RequiredMarker from "../RequiredMarker";
 import { FormFieldProps } from "./server_component";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import useCheckFieldUniqueness, {
   type ModelNames,
 } from "@/hooks/useCheckFieldUniqueness";
@@ -22,23 +22,27 @@ function FormFieldClient({
   field,
 }: FormFieldClientProps) {
   const [value, setValue] = useState<string>("");
+  const input = useRef<HTMLInputElement>(null);
   const { checked, pending, rejected, initial } = useCheckFieldUniqueness(
     value,
     model,
     field
   );
+  let className = styles.input;
+  if (checked) className += ` ${styles.success}`;
   return (
     <label className={styles.label}>
       {label}
       {!optional && <RequiredMarker />}:
       <input
+        ref={input}
         value={value}
         onInput={(e) => {
           const target = e.target as HTMLInputElement;
           setValue(target.value);
         }}
         required={!optional}
-        className={styles.input}
+        className={className}
         name={label.toLocaleLowerCase()}
         type={type}
         placeholder={placeholder}
@@ -51,6 +55,7 @@ function FormFieldClient({
         initial={initial}
         fieldName={label}
         text={value}
+        inputRef={input}
       />
     </label>
   );

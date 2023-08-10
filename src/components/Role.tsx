@@ -26,9 +26,9 @@ function Role({ children, onClick, selected }: RoleProps) {
         unmountOnExit
         classNames={{
           enterActive: styles.cross_enter_active,
-          enterDone: styles.cross_enter_active,
+          enter: styles.cross_enter,
           exitActive: styles.cross_exit_active,
-          exitDone: styles.cross_exit_active,
+          exit: styles.cross_exit,
         }}
       >
         <Cross className={styles.cross_default} ref={cross} />

@@ -9,16 +9,7 @@
   border-radius: 5px;
   border: 1px solid $textcolor;
   align-items: center;
-  @media screen and (min-width: 600px) {
-    left: calc(100% + 5px);
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  @media screen and (max-width: 599px) {
-    bottom: calc(100% + 7px);
-    right: 96.8px;
-    transform: translateX(50%);
-  }
+  transform: translate(-50%, -50%);
 
   &_success {
     color: $successcolor;
@@ -32,7 +23,28 @@
   &_pending {
     padding: 5px 5px;
   }
+
+  // animations
+  &_enter {
+    scale: 0;
+    opacity: 0;
+  }
+  &_enter_active {
+    scale: 1;
+    opacity: 1;
+    transition: scale 200ms, opacity 200ms;
+  }
+  &_exit {
+    scale: 1;
+    opacity: 1;
+  }
+  &_exit_active {
+    scale: 0;
+    opacity: 0;
+    transition: scale 200ms, opacity 200ms;
+  }
 }
+
 .text {
   width: auto;
 }

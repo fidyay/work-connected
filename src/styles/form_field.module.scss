@@ -7,7 +7,6 @@
   &:first-of-type {
     margin-top: 0px;
   }
-  position: relative;
 }
 
 .input {
@@ -27,5 +26,12 @@
   &:focus:invalid {
     color: $secondarycolor;
     outline: solid $secondarycolor 3px;
+  }
+}
+
+.success {
+  color: $successcolor;
+  &:focus {
+    outline: solid $successcolor 3px;
   }
 }
