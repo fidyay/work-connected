@@ -23,6 +23,7 @@ function FormFieldClient({
 }: FormFieldClientProps) {
   const [value, setValue] = useState<string>("");
   const input = useRef<HTMLInputElement>(null);
+  const [showMarker, setShowMarker] = useState(false);
   const { checked, pending, rejected, initial } = useCheckFieldUniqueness(
     value,
     model,
@@ -35,6 +36,8 @@ function FormFieldClient({
       {label}
       {!optional && <RequiredMarker />}:
       <input
+        onFocus={() => setShowMarker(true)}
+        onBlur={() => setShowMarker(false)}
         ref={input}
         value={value}
         onInput={(e) => {
@@ -56,6 +59,7 @@ function FormFieldClient({
         fieldName={label}
         text={value}
         inputRef={input}
+        className={showMarker ? "" : styles.unfocused_fields_marker}
       />
     </label>
   );

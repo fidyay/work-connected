@@ -23,8 +23,10 @@
   &::placeholder {
     color: rgba($textcolor, 0.7);
   }
-  &:focus:invalid {
+  &:invalid {
     color: $secondarycolor;
+  }
+  &:focus:invalid {
     outline: solid $secondarycolor 3px;
   }
 }
@@ -34,4 +36,8 @@
   &:focus {
     outline: solid $successcolor 3px;
   }
+}
+
+.unfocused_fields_marker {
+  display: none;
 }

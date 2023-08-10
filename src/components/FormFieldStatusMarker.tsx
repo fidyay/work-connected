@@ -17,6 +17,7 @@ interface FormFieldStatusMarkerProps {
   text: string;
   fieldName: string;
   inputRef: RefObject<HTMLInputElement>;
+  className?: string;
 }
 
 function getFieldStateStr({
@@ -96,6 +97,8 @@ function FormFieldStatusMarker(props: FormFieldStatusMarkerProps) {
       divClassName += ` ${styles.wrapper_pending}`;
       break;
   }
+  const { className: classNameFromParent = "" } = props;
+  if (classNameFromParent) divClassName += ` ${classNameFromParent}`;
   function setPos() {
     const { inputRef } = props;
     const node = nodeRef.current;
