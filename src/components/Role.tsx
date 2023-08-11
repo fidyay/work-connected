@@ -26,7 +26,9 @@ function Role({ children, onClick, selected }: RoleProps) {
         unmountOnExit
         classNames={{
           enterActive: styles.cross_enter_active,
+          enterDone: styles.cross_enter_active,
           enter: styles.cross_enter,
+          exitDone: styles.cross_exit_active,
           exitActive: styles.cross_exit_active,
           exit: styles.cross_exit,
         }}
