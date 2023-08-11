@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "typed-scss-modules src/styles --nameFormat \"snake\" --watch & next dev",
+    "dev": "typed-scss-modules src/styles --ignoreInitial --nameFormat \"snake\" --watch & next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
