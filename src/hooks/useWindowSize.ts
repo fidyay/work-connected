@@ -22,6 +22,7 @@ const useWindowSize = () => {
     return () => {
       window.removeEventListener("resize", handleSize);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return size;

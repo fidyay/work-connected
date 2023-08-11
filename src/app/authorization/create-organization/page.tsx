@@ -1,14 +1,13 @@
 import FormFieldServer from "@/components/FormField/server_component";
 import FormFieldClient from "@/components/FormField/client_component";
-import Submit from "@/components/Submit";
-import styles from "@/styles/authorization_form.module.scss";
+import styles from "@/styles/form.module.scss";
 import { createOrganisation } from "@/app/actions";
+import Form from "@/components/Form";
 
 function CreateOrganizationPage() {
   return (
     <div className={styles.form_wrapper}>
-      <form className={styles.form} action={createOrganisation}>
-        <h1 className={styles.form_title}>Create organization</h1>
+      <Form action={createOrganisation} title="Create organization">
         <FormFieldClient
           label="Organization name"
           placeholder="Microsoft corporations"
@@ -21,10 +20,7 @@ function CreateOrganizationPage() {
           placeholder="*****"
           type="password"
         />
-        <div className={styles.form_button_wrapper}>
-          <Submit>Submit</Submit>
-        </div>
-      </form>
+      </Form>
     </div>
   );
 }
