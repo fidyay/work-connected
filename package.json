@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "typed-scss-modules src/styles --nameFormat \"snake\" --watch & next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -25,6 +25,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "sass": "^1.63.6"
+    "sass": "^1.63.6",
+    "typed-scss-modules": "^7.1.4"
   }
 }
