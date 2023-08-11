@@ -13,7 +13,7 @@ const Info = forwardRef(function Info(
   return (
     <span ref={ref} style={style} className={className}>
       <svg
-        className={styles.info}
+        className={styles.svg}
         width="2"
         height="12"
         viewBox="0 0 2 12"
