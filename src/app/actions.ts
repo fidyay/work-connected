@@ -4,6 +4,8 @@ import organizationModel from "@/db/models/organization";
 import roleModel from "@/db/models/role";
 import chatModel from "@/db/models/chat";
 import { redirect } from "next/navigation";
+import { generateJWT } from "@/functions/JWT";
+import { cookies } from "next/dist/client/components/headers";
 
 export async function createOrganisation(data: FormData) {
   const organizationName = data.get("organization name") as string;
@@ -28,5 +30,11 @@ export async function createOrganisation(data: FormData) {
   user.setPassword(password);
   organization.users = [user._id];
   await Promise.all([organization.save(), user.save(), adminRole.save()]);
+  const token = generateJWT({
+    username: creatorName,
+    organization: organizationName,
+    password,
+  });
+  cookies().set("token", token);
   redirect("/");
 }
