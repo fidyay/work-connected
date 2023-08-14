@@ -1,7 +1,7 @@
 import mongoose, { Schema, model, Types } from "mongoose";
 import crypto from "crypto";
 
-interface User {
+interface User extends mongoose.Document {
   names: string;
   hash: string;
   salt: string;

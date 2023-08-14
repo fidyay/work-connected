@@ -12,7 +12,7 @@ const chatActionsSchema = new Schema<ChatActions>({
   deletingChat: Boolean,
 });
 
-interface Role {
+interface Role extends mongoose.Document {
   name: string;
   controledBy: Types.ObjectId;
   organization: Types.ObjectId;

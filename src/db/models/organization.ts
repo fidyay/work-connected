@@ -1,6 +1,6 @@
 import mongoose, { Schema, model, Types } from "mongoose";
 
-interface Organization {
+interface Organization extends mongoose.Document {
   name: string;
   users: Types.ObjectId[];
   roles: Types.ObjectId[];

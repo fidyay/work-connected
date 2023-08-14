@@ -1,6 +1,6 @@
 import mongoose, { Schema, model, Types } from "mongoose";
 
-interface Message {
+interface Message extends mongoose.Document {
   replyTo: Types.ObjectId;
   text: string;
   user: Types.ObjectId;
