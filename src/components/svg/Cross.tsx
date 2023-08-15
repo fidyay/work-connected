@@ -21,8 +21,8 @@ const Cross = forwardRef(function Cross(
       >
         <path
           d="M1.464 8.53503L8.536 1.46503M1.464 1.46503L8.536 8.53503"
-          stroke-width="1.5"
-          stroke-linecap="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
         />
       </svg>
     </span>

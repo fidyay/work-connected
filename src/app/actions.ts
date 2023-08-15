@@ -38,3 +38,10 @@ export async function createOrganisation(data: FormData) {
   cookies().set("token", token);
   redirect("/");
 }
+
+export async function createUser(data: FormData) {
+  const userNames = data.get("user names") as string;
+  const password = data.get("password") as string;
+  const roles = data.getAll("roles");
+  console.log(userNames, password, roles);
+}
