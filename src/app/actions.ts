@@ -45,3 +45,33 @@ export async function createUser(data: FormData) {
   const roles = data.getAll("roles");
   console.log(userNames, password, roles);
 }
+
+export async function login(data: FormData) {
+  try {
+    const userNames = data.get("user names") as string;
+    const password = data.get("password") as string;
+    const organizationName = data.get("organization name") as string;
+    const userOrganization = await organizationModel.findOne({
+      name: organizationName,
+    });
+    if (userOrganization) {
+      const userDoc = await userModel.findOne({
+        names: userNames,
+        organization: userOrganization.id,
+      });
+      if (userDoc) {
+        if (userDoc.validPassword(password)) {
+          const token = generateJWT({
+            username: userNames,
+            organization: organizationName,
+            password,
+          });
+          cookies().set("token", token);
+          redirect("/");
+        }
+      }
+    }
+  } catch (e) {
+    console.error(e);
+  }
+}

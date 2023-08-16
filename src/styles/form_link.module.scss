@@ -1,0 +1,17 @@
+@import "./variables.scss";
+
+.prefix {
+  color: $bordercolor;
+  margin-bottom: 10px;
+}
+
+.link {
+  color: $linkcolor;
+  text-decoration-line: underline;
+  text-decoration-color: rgba($linkhoveredcolor, 0);
+  transition: color 0.2s, text-decoration-color 0.2s;
+  &:hover {
+    color: $linkhoveredcolor;
+    text-decoration-color: $linkhoveredcolor;
+  }
+}
