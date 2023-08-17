@@ -2,7 +2,7 @@
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
 import { useRef } from "react";
 import { CSSTransition } from "react-transition-group";
-import styles from "@/styles/login_error_message.scss";
+import styles from "@/styles/login_error_message.module.scss";
 
 function LoginErrorMessage() {
   const { pending } = useFormStatus();
