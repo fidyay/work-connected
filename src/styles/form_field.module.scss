@@ -24,10 +24,10 @@
     color: rgba($textcolor, 0.7);
   }
   &:invalid {
-    color: $secondarycolor;
+    color: $errorcolor;
   }
   &:focus:invalid {
-    outline: solid $secondarycolor 3px;
+    outline: solid $errorcolor 3px;
   }
 }
 
