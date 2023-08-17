@@ -80,3 +80,16 @@ export async function login(data: FormData) {
     }
   }
 }
+
+type CheckboxValue = "on" | null;
+
+export async function createRole(data: FormData) {
+  try {
+    const roleName = (data.get("role name") as string).trim();
+    const creatingRoles = data.get("creating roles") as CheckboxValue;
+    const creatingUsers = data.get("creating users") as CheckboxValue;
+    console.log(roleName, creatingRoles, creatingUsers);
+  } catch (e) {
+    console.error(e);
+  }
+}

@@ -8,7 +8,7 @@ interface CheckboxFieldsetProps {
 
 function CheckboxFieldset({ legend, labels }: CheckboxFieldsetProps) {
   return (
-    <fieldset className={styles.fieldset}>
+    <fieldset name={legend.toLowerCase()} className={styles.fieldset}>
       <legend className={styles.legend}>{legend}</legend>
       {labels.map((label) => (
         <Checkbox key={label} label={label} />

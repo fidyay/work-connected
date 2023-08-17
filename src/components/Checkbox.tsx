@@ -13,7 +13,7 @@ function Checkbox({ label }: CheckboxProps) {
   return (
     <label className={styles.checkbox}>
       {label}{" "}
-      <input value={label.toLowerCase()} checked={checked} type="checkbox" />
+      <input name={label.toLowerCase()} checked={checked} type="checkbox" />
       <button
         type="button"
         className={buttonClassName}
