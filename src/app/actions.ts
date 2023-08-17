@@ -8,9 +8,9 @@ import { generateJWT } from "@/functions/JWT";
 import { cookies } from "next/dist/client/components/headers";
 
 export async function createOrganisation(data: FormData) {
-  const organizationName = data.get("organization name") as string;
-  const creatorName = data.get("creator's names") as string;
-  const password = data.get("creator's password") as string;
+  const organizationName = (data.get("organization name") as string).trim();
+  const creatorName = (data.get("creator's names") as string).trim();
+  const password = (data.get("creator's password") as string).trim();
   const adminRole = new roleModel({
     name: "admin",
     chatActions: [],
@@ -40,17 +40,17 @@ export async function createOrganisation(data: FormData) {
 }
 
 export async function createUser(data: FormData) {
-  const userNames = data.get("user names") as string;
-  const password = data.get("password") as string;
+  const userNames = (data.get("user names") as string).trim();
+  const password = (data.get("password") as string).trim();
   const roles = data.getAll("roles");
   console.log(userNames, password, roles);
 }
 
 export async function login(data: FormData) {
   try {
-    const userNames = data.get("user names") as string;
-    const password = data.get("password") as string;
-    const organizationName = data.get("organization name") as string;
+    const userNames = (data.get("user names") as string).trim();
+    const password = (data.get("password") as string).trim();
+    const organizationName = (data.get("organization name") as string).trim();
     const userOrganization = await organizationModel.findOne({
       name: organizationName,
     });
