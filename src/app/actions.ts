@@ -6,6 +6,7 @@ import chatModel from "@/db/models/chat";
 import { redirect } from "next/navigation";
 import { generateJWT } from "@/functions/JWT";
 import { cookies } from "next/dist/client/components/headers";
+import setTokenToClient from "@/functions/setTokenToClient";
 
 export async function createOrganisation(data: FormData) {
   const organizationName = (data.get("organization name") as string).trim();
@@ -35,7 +36,7 @@ export async function createOrganisation(data: FormData) {
     organization: organizationName,
     password,
   });
-  cookies().set("token", token);
+  setTokenToClient(token);
   redirect("/");
 }
 
@@ -47,6 +48,7 @@ export async function createUser(data: FormData) {
 }
 
 export async function login(data: FormData) {
+  let shouldRedirect: boolean = false;
   try {
     const userNames = (data.get("user names") as string).trim();
     const password = (data.get("password") as string).trim();
@@ -66,12 +68,16 @@ export async function login(data: FormData) {
             organization: organizationName,
             password,
           });
-          cookies().set("token", token);
-          redirect("/");
+          setTokenToClient(token);
+          shouldRedirect = true;
         }
       }
     }
   } catch (e) {
     console.error(e);
+  } finally {
+    if (shouldRedirect) {
+      redirect("/");
+    }
   }
 }
