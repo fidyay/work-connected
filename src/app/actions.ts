@@ -5,7 +5,6 @@ import roleModel from "@/db/models/role";
 import chatModel from "@/db/models/chat";
 import { redirect } from "next/navigation";
 import { generateJWT } from "@/functions/JWT";
-import { cookies } from "next/dist/client/components/headers";
 import setTokenToClient from "@/functions/setTokenToClient";
 
 export async function createOrganisation(data: FormData) {
