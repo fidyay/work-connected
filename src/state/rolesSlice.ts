@@ -12,10 +12,10 @@ interface ChatPermission {
   write: string;
 }
 
-interface Role {
+export interface Role {
   id: string;
   name: string;
-  controledBy: string;
+  controledBy: string | null;
   chatPermissions: ChatPermission[];
 }
 
@@ -34,7 +34,7 @@ const initialState: RoleState = {
   roles: rolesAdapter.getInitialState(),
 };
 
-const fetchRoles = createAsyncThunk("roles/fetchRoles", async () => {
+export const fetchRoles = createAsyncThunk("roles/fetchRoles", async () => {
   const rolesInfo = await fetch("/api/roles");
   const data = (await rolesInfo.json()) as Role[];
   return data;

@@ -3,15 +3,16 @@ import React, { useId, useState } from "react";
 import Role from "./Role";
 import useTypedSelector from "@/hooks/useTypedSelector";
 import styles from "@/styles/selection_roles.module.scss";
+import { type EntityId } from "@reduxjs/toolkit";
 
 interface SelectionRolesProps {
   title: string;
 }
 
 function SelectionRoles({ title }: SelectionRolesProps) {
-  const roles = useTypedSelector((state) => state.roles);
+  const roles = useTypedSelector((state) => state.roles.roles);
   const selectionId = useId();
-  const [selectedRoles, setSelectedRoles] = useState<Set<string>>(new Set());
+  const [selectedRoles, setSelectedRoles] = useState<Set<EntityId>>(new Set());
   return (
     <div className={styles.selection_wrapper}>
       <label className={styles.title} htmlFor={selectionId}>
@@ -23,30 +24,34 @@ function SelectionRoles({ title }: SelectionRolesProps) {
         name="roles"
         id={selectionId}
       >
-        {roles.map((role) => {
+        {roles.ids.map((roleId) => {
           return (
-            <option selected={selectedRoles.has(role)} key={role} value={role}>
-              {role}
+            <option
+              selected={selectedRoles.has(roleId)}
+              key={roleId}
+              value={roleId}
+            >
+              {roles.entities[roleId]?.name}
             </option>
           );
         })}
       </select>
       <div>
-        {roles.map((role) => {
+        {roles.ids.map((roleId) => {
           return (
             <Role
               onClick={() => {
-                if (selectedRoles.has(role)) {
-                  selectedRoles.delete(role);
+                if (selectedRoles.has(roleId)) {
+                  selectedRoles.delete(roleId);
                 } else {
-                  selectedRoles.add(role);
+                  selectedRoles.add(roleId);
                 }
                 setSelectedRoles(new Set(selectedRoles));
               }}
-              selected={selectedRoles.has(role)}
-              key={role}
+              selected={selectedRoles.has(roleId)}
+              key={roleId}
             >
-              {role}
+              {roles.entities[roleId]?.name as string}
             </Role>
           );
         })}
