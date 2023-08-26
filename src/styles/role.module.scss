@@ -1,6 +1,7 @@
 @import "./variables.scss";
 
-.span {
+.label {
+  display: inline;
   background-color: rgba($color: $buttoncolor, $alpha: 0.5);
   color: $textcolor;
   border-radius: 5px;
@@ -15,6 +16,10 @@
   &.selected {
     background-color: $buttoncolor;
   }
+}
+
+.checkbox {
+  display: none;
 }
 
 .selected {

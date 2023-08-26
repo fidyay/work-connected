@@ -1,5 +1,5 @@
 "use client";
-import React, { useId, useState } from "react";
+import React, { useState } from "react";
 import Role from "./Role";
 import useTypedSelector from "@/hooks/useTypedSelector";
 import styles from "@/styles/selection_roles.module.scss";
@@ -11,42 +11,24 @@ interface SelectionRolesProps {
 
 function SelectionRoles({ title }: SelectionRolesProps) {
   const roles = useTypedSelector((state) => state.roles.roles);
-  const selectionId = useId();
   const [selectedRoles, setSelectedRoles] = useState<Set<EntityId>>(new Set());
   return (
-    <div className={styles.selection_wrapper}>
-      <label className={styles.title} htmlFor={selectionId}>
-        {title}
-      </label>
-      <select
-        className={styles.selection}
-        multiple
-        name="roles"
-        id={selectionId}
-      >
-        {roles.ids.map((roleId) => {
-          return (
-            <option
-              selected={selectedRoles.has(roleId)}
-              key={roleId}
-              value={roleId}
-            >
-              {roles.entities[roleId]?.name}
-            </option>
-          );
-        })}
-      </select>
+    <fieldset className={styles.selection_wrapper}>
+      <legend className={styles.title}>{title}</legend>
       <div>
         {roles.ids.map((roleId) => {
           return (
             <Role
-              onClick={() => {
-                if (selectedRoles.has(roleId)) {
-                  selectedRoles.delete(roleId);
-                } else {
-                  selectedRoles.add(roleId);
+              value={roleId as string}
+              onClick={(e) => {
+                if (e.target === e.currentTarget) {
+                  if (selectedRoles.has(roleId)) {
+                    selectedRoles.delete(roleId);
+                  } else {
+                    selectedRoles.add(roleId);
+                  }
+                  setSelectedRoles(new Set(selectedRoles));
                 }
-                setSelectedRoles(new Set(selectedRoles));
               }}
               selected={selectedRoles.has(roleId)}
               key={roleId}
@@ -56,7 +38,7 @@ function SelectionRoles({ title }: SelectionRolesProps) {
           );
         })}
       </div>
-    </div>
+    </fieldset>
   );
 }
 

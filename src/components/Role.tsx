@@ -7,16 +7,23 @@ interface RoleProps {
   children: string;
   onClick?: React.MouseEventHandler<HTMLSpanElement>;
   selected?: boolean;
+  value: string;
 }
 
-function Role({ children, onClick, selected }: RoleProps) {
+function Role({ children, onClick, selected, value }: RoleProps) {
   const cross = useRef<HTMLSpanElement>(null);
 
   return (
-    <span
-      className={styles.span + (selected ? ` ${styles.selected}` : "")}
+    <label
+      className={styles.label + (selected ? ` ${styles.selected}` : "")}
       onClick={onClick}
     >
+      <input
+        checked={selected}
+        className={styles.checkbox}
+        type="checkbox"
+        value={value}
+      />
       {"@" + children}
       <CSSTransition
         in={selected}
@@ -35,7 +42,7 @@ function Role({ children, onClick, selected }: RoleProps) {
       >
         <Cross className={styles.cross_default} ref={cross} />
       </CSSTransition>
-    </span>
+    </label>
   );
 }
 
